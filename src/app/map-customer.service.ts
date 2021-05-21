@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter  } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { environment } from 'src/environments/environment';
-
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapCustomerService {
+  cbAdress: EventEmitter<any> = new EventEmitter<any>();
   mapbox = (mapboxgl as typeof mapboxgl)
   map: mapboxgl.Map;
   style = "mapbox://styles/mapbox/streets-v11";
@@ -41,7 +39,8 @@ export class MapCustomerService {
         geocoder.on('result', ($event) => {
           const {result}=$event
           geocoder.clear();
-
+          console.log('*********', result)
+          this.cbAdress.emit(result);
         })
 
 
@@ -57,15 +56,10 @@ export class MapCustomerService {
 
     })
 
-
-
-     
- 
-  
   }
 
   loadCoords(coords): void{
-     
+    console.log(coords);
     const url = [
       `https://api.mapbox.com/directions/v5/mapbox/driving/`,
       `${coords[0][0]},${coords[0][1]};${coords[1][0]},${coords[1][1]}`,
