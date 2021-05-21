@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angMaps"
+    }
+  },
+  "defaultProject": "angMaps",
+  "cli": {
+    "analytics": false
+  }
 }
