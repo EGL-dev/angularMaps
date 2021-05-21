@@ -9,7 +9,8 @@ import { MapCustomerService } from './map-customer.service';
 export class AppComponent implements OnInit {
   
   @ViewChild('asgeoCoder') asgeoCoder: ElementRef;
-
+  wayPoints: wayPoints = { start: null, end: null };
+  modeInput: 'start';
   constructor(private MapCustomerService : MapCustomerService , private renderer2:Renderer2) {
 
   }
@@ -31,5 +32,22 @@ export class AppComponent implements OnInit {
       })
     
   }
+
+      
+  drawerRoute(): void{
+    
+  }
+
+  changeMode(mode:String): void {
+    this.modeInput = mode;
+  }
+
+
+
+ 
 }
 
+export class wayPoints {
+  start: any;
+  end: any;
+}
