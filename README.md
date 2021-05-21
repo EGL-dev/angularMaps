@@ -1,3 +1,6 @@
+
+----DEPENDENCIAS----
+
 mapbox-gl
 
 @mapbox/mapbox-gl-geocoder
