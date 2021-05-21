@@ -65,7 +65,13 @@ export class MapCustomerService {
   }
 
   loadCoords(coords): void{
-    
+     
+    const url = [
+      `https://api.mapbox.com/directions/v5/mapbox/driving/`,
+      `${coords[0][0]},${coords[0][1]};${coords[1][0]},${coords[1][1]}`,
+      `?steps=true&geometries=geojson&access_token=${environment.mapPk}`,
+    ].join('')
+
   }
     
   
