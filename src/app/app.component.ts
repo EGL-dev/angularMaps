@@ -14,13 +14,13 @@ import { MapCustomerService } from './map-customer.service';
 })
 export class AppComponent implements OnInit {
   @ViewChild('asGeoCoder') asgeoCoder: ElementRef;
-  modeInput= 'start';
+  modeInput = 'start';
   wayPoints: WayPoints = { start: null, end: null };
 
   constructor(
     private MapCustomerService: MapCustomerService,
     private renderer2: Renderer2
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.MapCustomerService.buildMap()
@@ -47,21 +47,17 @@ export class AppComponent implements OnInit {
   }
 
   drawerRoute(): void {
+    console.log(this.wayPoints);
+    const coords = [this.wayPoints.start.center, this.wayPoints.end.center];
 
-   console.log(this.wayPoints);
-    const coords = [this.wayPoints.start, this.wayPoints.end];
-  
     this.MapCustomerService.loadCoords(coords);
   }
 
-  
-
-   changeMode(mode: string): void {
-  this.modeInput = mode;
+  changeMode(mode: string): void {
+    this.modeInput = mode;
   }
 }
 export class WayPoints {
   start: any;
   end: any;
 }
-
