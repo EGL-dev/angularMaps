@@ -1,12 +1,12 @@
 html, body {
-    margin: 0;
+    margin: 0px;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
   }
   
 .map-container {
     width: 60%;
-    height: 500px;
+    height: 300px;
     border-radius: 1rem;
     border: solid 10px white;
     box-shadow: 0 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -14,9 +14,9 @@ html, body {
   }
 
   .marker {
-    width: 50px;
-    height: 50px;
-    /*background-color: red;*/
+    width: 109px;
+    height: 100px;
+    background-color: red;
    /*background-image: url("./assets/image/carro-deportivo.png");*/
     background-size: contain;
     background-repeat: no-repeat;
@@ -65,13 +65,15 @@ html, body {
   
   .btn-route {
     background-color: white;
-    padding: .5rem 1rem;
+    padding: .3rem 1rem;
     border: solid 2px gray;
   }
   
   .wrapper{
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
+    overflow-x:hidden;
+    overflow-y:hidden;
   }
-  /* You can add global styles to this file, and also import other style files */
+ 
