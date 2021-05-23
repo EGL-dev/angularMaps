@@ -102,7 +102,6 @@ export class MapCustomerService {
 
       this.socket.emit('find-driver', { points: route });
 
-
     })
   }
 
