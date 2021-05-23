@@ -3,6 +3,7 @@ import * as mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,12 @@ export class MapCustomerService {
   style = 'mapbox://styles/mapbox/streets-v11';
   lat = -29.144242648922337;
   long = -59.64377875521803;
-  zoom = 5;
+  zoom = 3;
   wayPoints: Array<any> = [];
+  markerdriver: any = null;
 
-  constructor(private httpClient: HttpClient) {
+
+  constructor(private httpClient: HttpClient , private socket:Socket) {
     this.mapbox.accessToken = environment.mapPk;
   }
 
@@ -97,6 +100,21 @@ export class MapCustomerService {
         padding:100
       })
 
+      this.socket.emit('find-driver', { points: route });
+
+
     })
+  }
+
+  addMarkerCustom(coords): void {
+    const el = document.createElement('div');
+    el.className = 'marker';
+    if (!this.markerdriver) {
+      this.markerdriver = new mapboxgl.Marker(el);
+    } else {
+      this.markerdriver
+        .setLngLat(coords)
+        .addTo(this.map);
+    }
   }
 }

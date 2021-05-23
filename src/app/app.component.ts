@@ -5,6 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 import { MapCustomerService } from './map-customer.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private MapCustomerService: MapCustomerService,
-    private renderer2: Renderer2
+    private renderer2: Renderer2,
+    private socket: Socket
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,11 @@ export class AppComponent implements OnInit {
         this.wayPoints.end = getPoint;
       }
     });
+
+    this.socket.fromEvent('position').subscribe(({ coords }) => {
+      console.log('******* DESDE SERVER ****', coords);
+      this.MapCustomerService.addMarkerCustom(coords);
+    });
   }
 
   drawerRoute(): void {
@@ -55,6 +62,12 @@ export class AppComponent implements OnInit {
 
   changeMode(mode: string): void {
     this.modeInput = mode;
+  }
+
+  testMarker(): void {
+    this.MapCustomerService.addMarkerCustom([
+      -59.66013250310675, -29.161752693165877,
+    ]);
   }
 }
 export class WayPoints {
